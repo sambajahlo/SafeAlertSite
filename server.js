@@ -23,36 +23,69 @@ app.get('/',(req,res) =>{
     lon: -122.03118
    })
 })
-app.get('/uuid/:uuid/lat/:lat/lon/:lon',(req,res)=>{
-  res.render('index',
-  {
-    lat: req.params.lat,
-    lon: req.params.lon
+app.route('/uuid/:uuid/lat/:lat/lon/:lon')
+  .get(function(req,res)=>{
+    res.render('index',
+    {
+      lat: req.params.lat,
+      lon: req.params.lon
+    })
   })
-  pubnub.addListener({
-    status: function(statusEvent) {
-      if (statusEvent.category === "PNConnectedCategory") {
-        console.log("connected")
+  .get(function(req,res)=>{
+    pubnub.addListener({
+      status: function(statusEvent) {
+        if (statusEvent.category === "PNConnectedCategory") {
+          console.log("connected")
+        }
+      },
+      message: function(msg) {
+        console.log(msg.message);
+        res.render('index',
+        {
+          lat: msg.message.lat,
+          lon: msg.message.lat
+        })
+
+      },
+      presence: function(presenceEvent) {
+          // handle presence
       }
-    },
-    message: function(msg) {
-      console.log(msg.message);
-      res.render('index',
-      {
-        lat: msg.message.lat,
-        lon: msg.message.lat
-      })
-
-    },
-    presence: function(presenceEvent) {
-        // handle presence
-    }
+    })
+    pubnub.subscribe({
+      channels: [req.params.uuid]
+    });
   })
-  pubnub.subscribe({
-    channels: [req.params.uuid]
-  });
 
-})
+// app.get('/uuid/:uuid/lat/:lat/lon/:lon',(req,res)=>{
+//   res.render('index',
+//   {
+//     lat: req.params.lat,
+//     lon: req.params.lon
+//   })
+//   pubnub.addListener({
+//     status: function(statusEvent) {
+//       if (statusEvent.category === "PNConnectedCategory") {
+//         console.log("connected")
+//       }
+//     },
+//     message: function(msg) {
+//       console.log(msg.message);
+//       res.render('index',
+//       {
+//         lat: msg.message.lat,
+//         lon: msg.message.lat
+//       })
+//
+//     },
+//     presence: function(presenceEvent) {
+//         // handle presence
+//     }
+//   })
+//   pubnub.subscribe({
+//     channels: [req.params.uuid]
+//   });
+//
+// })
 
 app.listen(process.env.PORT || 3000, function(){
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
