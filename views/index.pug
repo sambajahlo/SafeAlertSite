@@ -29,7 +29,7 @@ html
         'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         id: 'mapbox.streets'
       }).addTo(mymap);
-      L.marker([#{lat}, #{lon}]).addTo(mymap);
+      var marker = L.marker([#{lat}, #{lon}]).addTo(mymap);
       
       //change markers when we get an update
       pubnub.addListener({

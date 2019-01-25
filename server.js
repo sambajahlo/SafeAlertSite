@@ -32,7 +32,7 @@ app.get('/uuid/:uuid/lat/:lat/lon/:lon',(req,res)=>{
   {
     lat: req.params.lat,
     lon: req.params.lon,
-    uuid: req.params.uuid
+    uuid: String(req.params.uuid)
   })
   // console.log("uuid",req.params.uuid)
   // pubnub.addListener({
