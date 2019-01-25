@@ -53,4 +53,4 @@ app.get('/user/:uuid/lat/:lat/lon/:lon',(req,res)=>{
   })
 })
 
-app.listen(port,()=>console.log('App listening on port' + port + '!'))
+//app.listen(port,()=>console.log('App listening on port' + port + '!'))
