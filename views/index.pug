@@ -40,7 +40,9 @@ html
         },
         message: function(msg) {
             console.log("RECEIVED MESSAGE",msg.message);
-            marker.setLatLng(new L.LatLng(msg.message.lat, msg.message.lon))
+            ll = new L.LatLng(msg.message.lat, msg.message.lon)
+            marker.setLatLng(ll)
+            mymap.panTo(ll)
             
         },
         presence: function(presenceEvent) {
