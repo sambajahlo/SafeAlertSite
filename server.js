@@ -23,7 +23,7 @@ app.get('/',(req,res) =>{
     lon: -122.03118
    })
 })
-app.get('/user/:uuid/lat/:lat/lon/:lon',(req,res)=>{
+app.get('/uuid/:uuid/lat/:lat/lon/:lon',(req,res)=>{
   res.render('index',
   {
     lat: req.params.lat,
