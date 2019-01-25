@@ -10,13 +10,6 @@ app.set('view engine', 'pug')
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//PUBNUB STUFF
-var pubnub = new PubNub({
-  subscribeKey: "sub-c-6d6a767c-112a-11e9-abd1-2a488504b737",
-  publishKey: "pub-c-29fb8b6a-3c2a-43be-8bc6-dcc74275a575"
-})
-
-
 app.get('/',(req,res) =>{
   res.render('index',
   {
@@ -24,9 +17,9 @@ app.get('/',(req,res) =>{
     lon: -122.03118
    })
 })
-
-
-
+//I tried to do some rerendering in here but i realized i could just move all
+//the pubnub api stuff to the client, which makes much more sense and takes
+//better advantage of pubnub
 app.get('/uuid/:uuid/lat/:lat/lon/:lon',(req,res)=>{
   res.render('index',
   {
@@ -34,28 +27,6 @@ app.get('/uuid/:uuid/lat/:lat/lon/:lon',(req,res)=>{
     lon: req.params.lon,
     uuid: req.params.uuid
   })
-  // console.log("uuid",req.params.uuid)
-  // pubnub.addListener({
-  //   status: function(statusEvent) {
-  //     if (statusEvent.category === "PNConnectedCategory") {
-  //       console.log("connected")
-  //     }
-  //   },
-  //   message: function(msg) {
-  //     console.log("RECEIVED MESSAGE",msg.message);
-  //
-  //   },
-  //   presence: function(presenceEvent) {
-  //       // handle presence
-  //   }
-  // })
-  // pubnub.subscribe({
-  //   channels: [req.params.uuid]
-  // });
-  // console.log("also in here")
-
-
-
 })
 
 app.listen(process.env.PORT || 3000, function(){

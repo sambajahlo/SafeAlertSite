@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    title Their Location
+    title SafeAlert Location
    
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     link(rel='stylesheet', href='https://unpkg.com/leaflet@1.4.0/dist/leaflet.css', integrity='sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==', crossorigin='')
@@ -16,11 +16,12 @@ html
         subscribeKey: "sub-c-6d6a767c-112a-11e9-abd1-2a488504b737",
         publishKey: "pub-c-29fb8b6a-3c2a-43be-8bc6-dcc74275a575"
       })
+      //subscribes to the uuid that is passed in through the url
       pubnub.subscribe({
           channels: ["#{uuid}"] 
       });
-      console.log("Subscribing..");
     
+      //sets the view to the inital area
       var mymap = L.map('mapid').setView([#{lat}, #{lon}], 13);
       L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoic2FtYmFtYm8iLCJhIjoiY2pyYXZ3aHl3MHgxazQzcGRpOW5yNmNlMyJ9.ON7c8v4ru-77yH57Re7MMA', {
         maxZoom: 18,
@@ -29,9 +30,10 @@ html
         'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         id: 'mapbox.streets'
       }).addTo(mymap);
+      //creates a marker with the inital coordinates
       var marker = L.marker([#{lat}, #{lon}]).addTo(mymap);
-      var ll = new L.LatLng(#{lat}, #{lon})
-      //change markers when we get an update
+      
+      
       pubnub.addListener({
         status: function(statusEvent) {
             if (statusEvent.category === "PNConnectedCategory") {
@@ -39,8 +41,10 @@ html
             }
         },
         message: function(msg) {
+          //This function receives the message from the uuid channel and updates the map with the current location
+          //also changes the marker to the new coordinates and pans the map to the new area.
             console.log("RECEIVED MESSAGE",msg.message);
-            ll = new L.LatLng(msg.message.lat, msg.message.lon)
+            var ll = new L.LatLng(msg.message.lat, msg.message.lon)
             marker.setLatLng(ll)
             mymap.panTo(ll)
             
