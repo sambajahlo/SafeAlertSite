@@ -19,7 +19,7 @@ html
       pubnub.subscribe({
           channels: [#{uuid}] 
       });
-      
+      console.log("Subscribing..");
     
       var mymap = L.map('mapid').setView([#{lat}, #{lon}], 13);
       L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoic2FtYmFtYm8iLCJhIjoiY2pyYXZ3aHl3MHgxazQzcGRpOW5yNmNlMyJ9.ON7c8v4ru-77yH57Re7MMA', {
@@ -35,18 +35,18 @@ html
       pubnub.addListener({
         status: function(statusEvent) {
             if (statusEvent.category === "PNConnectedCategory") {
-                publishSampleMessage();
+                console.log("connected")
             }
         },
         message: function(msg) {
-            console.log(msg.message.title);
-            console.log(msg.message.description);
+            console.log("RECEIVED MESSAGE",msg.message);
+            
         },
         presence: function(presenceEvent) {
             // handle presence
         }
       })      
-      console.log("Subscribing..");
+      
       
     
      
