@@ -23,15 +23,16 @@ app.get('/',(req,res) =>{
     lon: -122.03118
    })
 })
+
 app.route('/uuid/:uuid/lat/:lat/lon/:lon')
-  .get(function(req,res)=>{
+  .get(function(req,res){
     res.render('index',
     {
       lat: req.params.lat,
       lon: req.params.lon
     })
   })
-  .get(function(req,res)=>{
+  .get(function(req,res){
     pubnub.addListener({
       status: function(statusEvent) {
         if (statusEvent.category === "PNConnectedCategory") {
