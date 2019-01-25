@@ -15,6 +15,23 @@ var pubnub = new PubNub({
   subscribeKey: "sub-c-6d6a767c-112a-11e9-abd1-2a488504b737",
   publishKey: "pub-c-29fb8b6a-3c2a-43be-8bc6-dcc74275a575"
 })
+// pubnub.addListener({
+//   status: function(statusEvent) {
+//     if (statusEvent.category === "PNConnectedCategory") {
+//       console.log("connected")
+//     }
+//   },
+//   message: function(msg) {
+//     console.log(msg.message);
+//
+//   },
+//   presence: function(presenceEvent) {
+//       // handle presence
+//   }
+// })
+// pubnub.subscribe({
+//   channels: [req.params.uuid]
+// });
 
 app.get('/',(req,res) =>{
   res.render('index',
@@ -30,52 +47,9 @@ app.get('/uuid/:uuid/lat/:lat/lon/:lon',(req,res)=>{
   {
     lat: req.params.lat,
     lon: req.params.lon
-  }), function(err, html) {
-    pubnub.addListener({
-      status: function(statusEvent) {
-        if (statusEvent.category === "PNConnectedCategory") {
-          console.log("connected")
-        }
-      },
-      message: function(msg) {
-        console.log(msg.message);
-        res.render('index',
-        {
-          lat: msg.message.lat,
-          lon: msg.message.lat
-        })
+  })
+  console.log("uuid",req.params.uuid)
 
-      },
-      presence: function(presenceEvent) {
-          // handle presence
-      }
-    })
-    pubnub.subscribe({
-      channels: [req.params.uuid]
-    });
-  }
-  // pubnub.addListener({
-  //   status: function(statusEvent) {
-  //     if (statusEvent.category === "PNConnectedCategory") {
-  //       console.log("connected")
-  //     }
-  //   },
-  //   message: function(msg) {
-  //     console.log(msg.message);
-  //     res.render('index',
-  //     {
-  //       lat: msg.message.lat,
-  //       lon: msg.message.lat
-  //     })
-  //
-  //   },
-  //   presence: function(presenceEvent) {
-  //       // handle presence
-  //   }
-  // })
-  // pubnub.subscribe({
-  //   channels: [req.params.uuid]
-  // });
 
 })
 
