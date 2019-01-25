@@ -24,6 +24,10 @@ app.get('/',(req,res) =>{
     lon: -122.03118
    })
 })
+// git add .
+// git commit -m "testing rerendering pug and getting publishes"
+// git push heroku master
+
 
 
 app.get('/uuid/:uuid/lat/:lat/lon/:lon',(req,res)=>{
