@@ -24,6 +24,11 @@ app.get('/',(req,res) =>{
    })
 })
 app.get('/user/:uuid/lat/:lat/lon/:lon',(req,res)=>{
+  res.render('index',
+  {
+    lat: req.params.lat,
+    lon: req.params.lon
+  })
   pubnub.addListener({
     status: function(statusEvent) {
       if (statusEvent.category === "PNConnectedCategory") {
@@ -46,11 +51,7 @@ app.get('/user/:uuid/lat/:lat/lon/:lon',(req,res)=>{
   pubnub.subscribe({
     channels: [req.params.uuid]
   });
-  res.render('index',
-  {
-    lat: req.params.lat,
-    lon: req.params.lon
-  })
+
 })
 
 app.listen(process.env.PORT || 3000, function(){
