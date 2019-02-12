@@ -47,15 +47,16 @@ html
             var ll = new L.LatLng(msg.message.lat, msg.message.lon)
             marker.setLatLng(ll)
             var popUpHTML = '<b><a href="http://www.google.com/maps/place/' + msg.message.lat + ',' + msg.message.lon +'">Google Maps!</a></b>';
-            marker.bindPopup('<a href = "poop.com">pizza</a>').openPopup();
-            console.log(popUpHTML)
+            marker.bindPopup(popUpHTML).openPopup()
             mymap.panTo(ll)
             
         },
         presence: function(presenceEvent) {
             // handle presence
         }
-      })      
+      })     
+      
+    a(href="https://github.com/SambaDialloB/SafeAlertSite") Check out this github to learn how to build this site! 
       
       
     
