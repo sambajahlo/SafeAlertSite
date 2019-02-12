@@ -10,11 +10,11 @@ html
   body
     #mapid(style='width: 600px; height: 400px;')
     script.
-    
+      //MAKE SURE TO REPLACE PUBNUB KEYS 
       //pubnub init stuff
       pubnub = new PubNub({
-        subscribeKey: "sub-c-6d6a767c-112a-11e9-abd1-2a488504b737",
-        publishKey: "pub-c-29fb8b6a-3c2a-43be-8bc6-dcc74275a575"
+        subscribeKey: "INSERT SUB KEY HERE",
+        publishKey: "INSERT PUB KEY HERE"
       })
       //subscribes to the uuid that is passed in through the url
       pubnub.subscribe({
@@ -46,7 +46,7 @@ html
             console.log("RECEIVED MESSAGE",msg.message);
             var ll = new L.LatLng(msg.message.lat, msg.message.lon)
             marker.setLatLng(ll)
-            var popUpHTML = '<b><a href="http://www.google.com/maps/place/' + msg.message.lat + ',' + msg.message.lon +'">Google Maps!</a></b>';
+            var popUpHTML = '<b><a href="http://www.google.com/maps/place/' + msg.message.lat + ',' + msg.message.lon +'">Find this on<br>Google Maps!</a></b>';
             marker.bindPopup(popUpHTML).openPopup()
             mymap.panTo(ll)
             

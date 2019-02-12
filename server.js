@@ -19,7 +19,7 @@ app.get('/',(req,res) =>{
 })
 //I tried to do some rerendering in here but i realized i could just move all
 //the pubnub api stuff to the client, which makes much more sense and takes
-//better advantage of pubnub
+//better advantage of pubnub's ease of client to client
 app.get('/uuid/:uuid/lat/:lat/lon/:lon',(req,res)=>{
   res.render('index',
   {
