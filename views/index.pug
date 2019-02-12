@@ -46,7 +46,7 @@ html
             console.log("RECEIVED MESSAGE",msg.message);
             var ll = new L.LatLng(msg.message.lat, msg.message.lon)
             marker.setLatLng(ll)
-            marker.bindPopup('<b><a href="http://www.google.com/maps/place/' + msg.message.lat + ',' + msg.message.lon + '">Google Maps!</a></b>').openPopup();
+            marker.bindPopup('<b><a href="http://www.google.com/maps/place/' + msg.message.lat + ',' + msg.message.lon +'">Google Maps!</a></b>').openPopup();
             mymap.panTo(ll)
             
         },
