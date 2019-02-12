@@ -12,7 +12,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-- [ ] Pubnub Account ![Sign Up!](https://dashboard.pubnub.com/signup)
+- [ ] Pubnub Account [Sign Up!](https://dashboard.pubnub.com/signup)
 
 ### Installing
 
@@ -22,7 +22,7 @@ You already have everything installed that you need from this repository!
 
 ## Deployment
 
-In order to use and deploy this app you need to replace the keys with your own in one place in /views/index.pug on line 16 and 17. It will not subscribe to any user unless the url ends in /uuid/:uuid/lat/:lat/lon/:lon with the lat and lon being the inital location where the app user pressed the alert button. If there is no new messages it is receiving then it will only load that point.
+In order to use and deploy this app you need to replace the keys with your own in one place in /views/index.pug on line 16 and 17. It will not subscribe to any user unless the url ends in /uuid/"uuid"/lat/"lat"/lon/"lon" with the "lat" and "lon" being the inital location where the app user pressed the alert button. The "uuid" is the channel name that the webpage subscribes to in order to get updates from the user. If there is no new messages it is receiving then it will only load that point.
  You should now be able to load the Real-Time updating map!
 
 ## Authors
