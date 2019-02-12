@@ -46,6 +46,7 @@ html
             console.log("RECEIVED MESSAGE",msg.message);
             var ll = new L.LatLng(msg.message.lat, msg.message.lon)
             marker.setLatLng(ll)
+            marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
             mymap.panTo(ll)
             
         },
