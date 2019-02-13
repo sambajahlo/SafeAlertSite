@@ -1,6 +1,6 @@
 # SafeAlert.Web
 
-This is the website portion of the SafeAlert app! The app uses Pubnub and Clicksend to send a text with a link to this website in order to have the users contacts be notified of their movements. This uses Leaflet to create the map and display markers and popups, and PubNub to update the map with every change in the users movement. The app portion of this project is located here: https://github.com/SambaDialloB/SafeAlert
+This is the website portion of the SafeAlert app! The app uses Pubnub and ClickSend to send a text with a link to this website in order to have the users' contacts be notified of their movements. This uses Leaflet to create the map and display markers and popups, and PubNub to update the map with every change in the users' movement. The app portion of this project is located here: https://github.com/SambaDialloB/SafeAlert
 
 ## Demo
 
@@ -22,7 +22,7 @@ You already have everything installed that you need from this repository!
 
 ## Deployment
 
-In order to use and deploy this app you need to replace the keys with your own in one place in /views/index.pug on line 16 and 17. It will not subscribe to any user unless the url ends in /uuid/"uuid"/lat/"lat"/lon/"lon" with the "lat" and "lon" being the inital location where the app user pressed the alert button. The "uuid" is the channel name that the webpage subscribes to in order to get updates from the user. If there is no new messages it is receiving then it will only load that point.
+In order to use and deploy this app, you need to replace the keys with your own in one place in /views/index.pug on line 16 and 17. It will not subscribe to any user unless the URL ends in /uuid/"uuid"/lat/"lat"/lon/"lon" with the "lat" and "lon" being the initial location where the app user pressed the alert button. The "uuid" is the channel name that the webpage subscribes to in order to get updates from the user. If there are no new messages it is receiving then it will only load the original point in the url.
  You should now be able to load the Real-Time updating map!
 
 ## Authors
@@ -32,7 +32,7 @@ In order to use and deploy this app you need to replace the keys with your own i
 ## Acknowledgments
 
 * CodePath from which I learned how to create iOS apps
-* My girlfriend from which i got the idea from this app
+* My girlfriend from which I got the idea from this app
 
 
 
