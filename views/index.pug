@@ -13,8 +13,8 @@ html
       //MAKE SURE TO REPLACE PUBNUB KEYS 
       //pubnub init stuff
       pubnub = new PubNub({
-        subscribeKey: "INSERT SUB KEY HERE",
-        publishKey: "INSERT PUB KEY HERE"
+        subscribeKey: "pub-c-29fb8b6a-3c2a-43be-8bc6-dcc74275a575",
+        publishKey: "sub-c-6d6a767c-112a-11e9-abd1-2a488504b737"
       })
       //subscribes to the uuid that is passed in through the url
       pubnub.subscribe({
@@ -32,6 +32,8 @@ html
       }).addTo(mymap);
       //creates a marker with the inital coordinates
       var marker = L.marker([#{lat}, #{lon}]).addTo(mymap);
+      var popUpHTML = '<b><a href="http://www.google.com/maps/place/#{lat},#{lon}">Find this on<br>Google Maps!</a></b>';
+      marker.bindPopup(popUpHTML).openPopup()
       
       
       pubnub.addListener({

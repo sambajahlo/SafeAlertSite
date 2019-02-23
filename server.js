@@ -1,14 +1,14 @@
 const express = require('express');
 const pug = require('pug');
-var path = require('path')
-var bodyParser = require('body-parser');
+//var path = require('path')
+//var bodyParser = require('body-parser');
 var PubNub = require('pubnub')
 const app = express()
-const port = 3000
+//const port = 3000
 
 app.set('view engine', 'pug')
-app.use(express.static(path.join(__dirname, '/public')));
-app.use(bodyParser.urlencoded({ extended: true }));
+//app.use(express.static(path.join(__dirname, '/public')));
+//app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/',(req,res) =>{
   res.render('index',
