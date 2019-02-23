@@ -4,7 +4,7 @@ var path = require('path')
 var bodyParser = require('body-parser');
 var PubNub = require('pubnub')
 const app = express()
-//const port = 3000
+const port = 3000
 
 app.set('view engine', 'pug')
 app.use(express.static(path.join(__dirname, '/public')));
