@@ -1,14 +1,10 @@
 const express = require('express');
 const pug = require('pug');
-var path = require('path')
-var bodyParser = require('body-parser');
 var PubNub = require('pubnub')
 const app = express()
-const port = 3000
+
 
 app.set('view engine', 'pug')
-app.use(express.static(path.join(__dirname, '/public')));
-app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/',(req,res) =>{
   res.render('index',
@@ -17,9 +13,9 @@ app.get('/',(req,res) =>{
     lon: -122.03118
    })
 })
-//I tried to do some rerendering in here but i realized i could just move all
-//the pubnub api stuff to the client, which makes much more sense and takes
-//better advantage of pubnub's ease of client to client
+//This is only for the inital loading of the webpage.
+//Sends the map lat and lon, plus the apps uuid to the client to initialize the
+//map and subscribe to the user for updates
 app.get('/uuid/:uuid/lat/:lat/lon/:lon',(req,res)=>{
   res.render('index',
   {

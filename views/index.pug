@@ -8,15 +8,8 @@ html
     script(src='https://unpkg.com/leaflet@1.4.0/dist/leaflet.js', integrity='sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==', crossorigin='')
     script(src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.21.7.js")
   body
-    #mapid(style='width: 600px; height: 400px;')
+    #mapid(style='width: 100%; height: 80%;')
     script.
-      //MAKE SURE TO REPLACE PUBNUB KEYS 
-      //pubnub init stuff
-      var pubnub = new PubNub({
-        subscribeKey: "sub-c-6d6a767c-112a-11e9-abd1-2a488504b737"
-      });
-      console.log(pubnub)
-    
       //sets the view to the inital area
       var mymap = L.map('mapid').setView([#{lat}, #{lon}], 13);
       L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoic2FtYmFtYm8iLCJhIjoiY2pyYXZ3aHl3MHgxazQzcGRpOW5yNmNlMyJ9.ON7c8v4ru-77yH57Re7MMA', {
@@ -31,6 +24,11 @@ html
       var popUpHTML = '<b><a href="http://www.google.com/maps/place/#{lat},#{lon}">Find this on<br>Google Maps!</a></b>';
       marker.bindPopup(popUpHTML).openPopup()
       
+      //MAKE SURE TO REPLACE SUBSCRIBE KEY
+      //pubnub init stuff
+      var pubnub = new PubNub({
+        subscribeKey: "sub-c-6d6a767c-112a-11e9-abd1-2a488504b737"
+      });
       
       pubnub.addListener({
         status: function(statusEvent) {
@@ -52,7 +50,7 @@ html
         },
         presence: function(presenceEvent) {
           console.log(presenceEvent)
-            // handle presence
+            
         }
       }) 
       //subscribes to the uuid that is passed in through the url
