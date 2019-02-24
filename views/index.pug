@@ -46,11 +46,9 @@ html
             var popUpHTML = '<b><a href="http://www.google.com/maps/place/' + msg.message.lat + ',' + msg.message.lon +'">Find this on<br>Google Maps!</a></b>';
             marker.bindPopup(popUpHTML).openPopup()
             mymap.panTo(ll)
-            
         },
         presence: function(presenceEvent) {
           console.log(presenceEvent)
-            
         }
       }) 
       //subscribes to the uuid that is passed in through the url
