@@ -36,6 +36,7 @@ html
             if (statusEvent.category === "PNConnectedCategory") {
                 console.log("connected")
             }
+            console.log(statusEvent)
         },
         message: function(msg) {
           //This function receives the message from the uuid channel and updates the map with the current location
@@ -49,12 +50,13 @@ html
             
         },
         presence: function(presenceEvent) {
+          console.log(presenceEvent)
             // handle presence
         }
       }) 
       //subscribes to the uuid that is passed in through the url
       pubnub.subscribe({
-          channels: [#{uuid}] 
+          channels: ["#{uuid}"] 
       });    
       
     a(href="https://github.com/SambaDialloB/SafeAlertSite") Check out this github to learn how to build this site! 
