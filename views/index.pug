@@ -28,7 +28,7 @@ html(style='height: 100%; width: 100vw;')
       //MAKE SURE TO REPLACE SUBSCRIBE KEY
       //pubnub init stuff
       var pubnub = new PubNub({
-        subscribeKey: "sub-c-6d6a767c-112a-11e9-abd1-2a488504b737"
+        subscribeKey: "INSERT SUBSCRIBE KEY HERE"
       });
       
       pubnub.addListener({
@@ -44,7 +44,7 @@ html(style='height: 100%; width: 100vw;')
             console.log("RECEIVED MESSAGE",msg.message);
             var ll = new L.LatLng(msg.message.lat, msg.message.lon)
             marker.setLatLng(ll)
-            var popUpHTML = '<b><a href="http://www.google.com/maps/place/' + msg.message.lat + ',' + msg.message.lon +'">Find this on<br>Google Maps!</a></b>';
+            popUpHTML = '<b><a href="http://www.google.com/maps/place/' + msg.message.lat + ',' + msg.message.lon +'">Find this on<br>Google Maps!</a></b>';
             marker.bindPopup(popUpHTML).openPopup()
             mymap.panTo(ll)
         },
