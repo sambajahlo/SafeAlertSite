@@ -16,10 +16,6 @@ html
         subscribeKey: "pub-c-29fb8b6a-3c2a-43be-8bc6-dcc74275a575",
         publishKey: "sub-c-6d6a767c-112a-11e9-abd1-2a488504b737"
       })
-      //subscribes to the uuid that is passed in through the url
-      pubnub.subscribe({
-          channels: ["#{uuid}"] 
-      });
     
       //sets the view to the inital area
       var mymap = L.map('mapid').setView([#{lat}, #{lon}], 13);
@@ -56,7 +52,11 @@ html
         presence: function(presenceEvent) {
             // handle presence
         }
-      })     
+      }) 
+      //subscribes to the uuid that is passed in through the url
+      pubnub.subscribe({
+          channels: ["#{uuid}"] 
+      });    
       
     a(href="https://github.com/SambaDialloB/SafeAlertSite") Check out this github to learn how to build this site! 
       
