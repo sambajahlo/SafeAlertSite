@@ -1,8 +1,5 @@
 const express = require('express');
-const pug = require('pug');
-var PubNub = require('pubnub')
 const app = express()
-
 
 app.set('view engine', 'pug')
 
